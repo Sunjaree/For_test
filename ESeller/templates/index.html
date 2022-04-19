@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% block title %} ESeller{% endblock title %}
+{% block body %}
+{% load static %}
+<div class="container-fluid my-0 px-0 py-0">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+{#          src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"#}
+          src="/static/display1.jfif"
+                class="d-block w-100" style="height:500px;" alt="...">
+        <div class="carousel-caption d-none d-md-block"
+          style="background-color: rgb(182, 23, 23); border-radius: 72px; width: 900px; height: 95px;">
+          <h5>Fresh and Best</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+{#          src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"#}
+          src="/static/display2.jfif"
+                class="d-block w-100" style="height:500px;" alt="...">
+        <div class="carousel-caption d-none d-md-block"
+          style="background-color: rgb(182, 23, 23); border-radius: 72px; width: 900px; height: 95px;">
+          <h5>We are Open 24/7</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+{#          src="https://images.unsplash.com/photo-1580828343064-fde4fc206bc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"#}
+          src="/static/display3.jfif"
+                class="d-block w-100" style="height:500px;" alt="...">
+        <div class="carousel-caption d-none d-md-block"
+          style="background-color: rgb(182, 23, 23); border-radius: 72px; width: 900px; height: 95px;">
+          <h5>20% Sale on every Food products</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="p-3 mb-1 bg-danger text-white text-center my-2">
+  <h1><b>Our Items</b></h1>
+</div>
+
+<div class="album py-2 bg-gradient">
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+      <div class="col">
+        <div class="card shadow-sm">
+            <img src="/static/fruit.jfif">
+          <div class="card-body">
+            <p class="card-text"><b>Fruits</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/fruit"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="/static/vegetable.jfif">
+          <div class="card-body">
+            <p class="card-text"><b>Vegetable</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/vegetable"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="/static/toy.jpg">
+          <div class="card-body">
+            <p class="card-text"><b>Toys</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/toy"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="/static/medicine.jfif">
+          <div class="card-body">
+            <p class="card-text"><b>Medicines</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/medicine"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="/static/stationery.jfif">
+          <div class="card-body">
+            <p class="card-text"><b>Stationery</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/stationery"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <!-- <img src="https://source.unsplash.com/random/300x300/?pet"> -->
+          <img src="/static/pet.jpg">
+          <div class="card-body">
+            <p class="card-text"><b>Pet Accessories</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/pet"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="/static/electric.jfif">
+          <div class="card-body">
+            <p class="card-text"><b>Electric</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/electric"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <!-- <img src="https://source.unsplash.com/random/300x300/?meat"> -->
+          <img src="/static/meat.jfif">
+
+          <div class="card-body">
+            <p class="card-text"><b>Meat</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/meat"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <!-- <img src="https://source.unsplash.com/random/300x300/?fish"> -->
+          <img src="/static/fish.jpg">
+
+          <div class="card-body">
+            <p class="card-text"><b>Fish</b></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <a class="btn btn-sm btn-outline-secondary" href="/fish"> View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock body %}
+
+
+
+{% block js %}
+        <script type="text/javascript" src="{% static 'js/index.js' %}"> </script>
+{% endblock %}
+

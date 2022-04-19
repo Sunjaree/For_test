@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  <!-- <link rel="icon" src="static/lul.png"> -->
+
+
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+
+
+
+
+<body>
+
+
+
+
+  
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000;">
+
+
+    <div class="container-fluid">
+
+
+      <a class="navbar-brand" href="/">
+        <i class="bi bi-cart4" style="font-size: 40px"></i>
+        ESeller
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-3">
+            <a class="nav-link active mt-3" aria-current="page" href="/">
+              <i class="bi bi-house-door"></i> Home</a>
+          </li>
+
+
+          <!-- Servives = Category  -->
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle mt-3" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Category
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/fruit">Fruit</a></li>
+              <li><a class="dropdown-item" href="/vegetable">Vegetable</a></li>
+              <li><a class="dropdown-item" href="/toy">Toys</a></li>
+              <li><a class="dropdown-item" href="/medicine">Medicines</a></li>
+              <li><a class="dropdown-item" href="/stationery">Stationery</a></li>
+              <li><a class="dropdown-item" href="/pet">Pet Accessories</a></li>
+              <li><a class="dropdown-item" href="/electric">Electric</a></li>
+              <li><a class="dropdown-item" href="/meat">Meat</a></li>
+              <li><a class="dropdown-item" href="/fish">Fish</a></li>
+
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">Popular</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item ms-3">
+            <a class="nav-link mt-3" href="/about">
+              <i class="bi bi-arrow-right-circle-fill"></i> About</a>
+          </li>
+
+          <li class="nav-item ms-3">
+            <a class="nav-link mt-3" href="/contact">
+              <i class="bi bi-chat-square-dots-fill"></i>
+              Contact Us</a>
+          </li>
+        </ul>
+
+        <form class="d-flex mb-3 mt-3 me-5">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+        </form>
+
+
+
+        {% if user.is_authenticated %}
+
+        {% if user.is_superuser%}
+
+        
+        <button type="button" class="btn btn-warning position-relative me-4">
+          <i class="bi bi-bell-fill"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            1
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
+        
+        {% comment %} Nothing will happen because admin can not buy products {% endcomment %}
+        {% else %}
+        <a type="button" class="btn btn-warning me-2" href="/cart"><i class="bi bi-bag-check-fill"></i> Cart(<span id="cart">0</span>)</a>
+{#        <a class="nav-link" href="#">Cart(<span id="cart">0</span>)</a>#}
+        {% endif %}
+
+        <div class="btn-group me-3">
+          <button type="button" class="btn btn-warning">
+            Welcome <i>{{request.user}}</i>
+          </button>
+          <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+            aria-expanded="false">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">My Profile</i></a></li>
+
+
+            {%if user.is_superuser%}
+            
+
+            <li><a class="dropdown-item"  href="add_product">Add Items</i></a></li>
+
+            <li><a class="dropdown-item" href="contact_admin">View Contacts</i></a></li>
+            <li><a class="dropdown-item" href="">View Orders</i></a></li>
+            {%endif%}
+
+            <li><a class="dropdown-item" href="logout">Logout</i></a></li>
+
+          </ul>
+        </div>
+
+
+
+        {% else %}
+        <!-- Sign-up -->
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signupModal">
+          Sign-up
+        </button>
+
+        <!-- Login -->
+        <button type="button" class="btn btn-warning ms-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+          Login
+        </button>
+        {%endif%}
+
+        <!-- Sugn-up Modal -->
+        <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="signupModal">Sign-Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/signup" method="post">
+                  {% csrf_token %}
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="E.g. djohn"
+                      required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">First Name:</label>
+                    <input type="text" class="form-control" id="fname" name="fname" placeholder="E.g. John" required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" id="lname" name="lname" placeholder="E.g. Doe" required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="E.g. name@example.com"
+                      required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="********"
+                      required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Re-type your Password:</label>
+                    <input type="password" class="form-control" id="pass2" name="pass2" placeholder="********"
+                      required />
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModal">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/login" method="post">
+                  {% csrf_token %}
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="loginusername" name="loginusername"
+                      placeholder="E.g. djohn" required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                      placeholder="******" required />
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %} {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %} {% endif %}
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+
+  {% block body %}{% endblock body %}
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+
+
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+  {% block js %} {% endblock %}
+
+
+
+
+    <footer class="bg-dark text-center text-white last-part">
+ 
+      <div class="container p-4 pb-0">
+   
+        <section class="mb-4">
+     
+          <a class="btn btn-outline-light btn-floating m-1" href="https://facebook.com/home" role="button"><i class="fab fa-facebook-f"></i></a>
+    
+    
+          <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com" role="button"
+            ><i class="fab fa-twitter"></i
+          ></a>
+    
+    
+          <a class="btn btn-outline-light btn-floating m-1" href="https://instagram.com" role="button"
+            ><i class="fab fa-instagram"></i
+          ></a>
+    
+        </section>
+
+      </div>
+
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0,0.2);">
+        © 2022 Copyright:
+        <a class="text-white" href="https://eseller.com">ESeller.com</a>
+      </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

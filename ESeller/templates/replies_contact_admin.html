@@ -1,0 +1,72 @@
+{% extends 'base.html' %} {% block title %} Replies {% endblock title %} 
+
+
+{%block body %} 
+
+
+
+<div class="overflow-scroll" style="height:421px;">
+{% for i in sent_replies %}
+
+
+
+
+
+<div class="accordion" id="accordionExample" >
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo-{{ forloop.counter }}">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo-{{ forloop.counter }}"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+      
+      <i class="bi bi-person-circle me-4" style="font-size: 30px"></i>
+
+
+      <strong>Name: 
+        {{i.message_sender.name}}
+        ({{i.message_sender.email}})
+        <a class="btn me-5" href="{% url 'deleteEmails_Sent_replies_admin' i.message_sender.message_id %}" role="button"><i class="bi bi-trash-fill" style="font-size: 20px"></i></a>
+        <br>
+   
+        <div class="container px-0 mx-0 mb-3">
+          Comment: 
+          {{i.message_sender.comment}}
+        </div>
+        
+          </strong> 
+
+      </button>
+    </h2>
+    <div
+      id="collapseTwo-{{ forloop.counter }}"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample-{{ forloop.counter }}"
+    >
+      <div class="accordion-body">
+        <p>Subject: {{i.subject}}</p>
+        {{i.reply}}
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+
+
+{% endfor %} 
+</div>
+{% endblock body %}

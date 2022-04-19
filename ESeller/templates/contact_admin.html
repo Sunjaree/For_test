@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+View Contact
+{% endblock title %}
+
+
+
+
+{% block body %}
+
+<div class=" container-fluid d-grid gap-3 col-13 mx-auto px-0">
+  <a class="btn btn-warning" style="border-radius: 0px; height:50px; border: 2px solid black;" href="replies_contact_admin" role="button"><strong>View Replies</strong></a>
+</div>
+
+<div class="container-fluid px-0 py-0 mb-0" style="height:371px; overflow: scroll;">
+  <table class="table table-light table-striped mb-0">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Date</th>
+        <th scope="col">Comments</th>
+        <th scope="col">Ignore</th>
+        <th scope="col">Send Replies</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in contact %}
+      <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.comment}}</td>
+
+        <!-- Ignore -->
+        <td><a class="btn btn-danger ms-2" href="{% url 'deleteEmails_contact_admin' i.message_id %}" role="button"><i class="bi bi-x-circle-fill"></i></a></td>
+
+
+
+
+        <td>
+
+          <button type="button" class="btn btn-warning ms-4" data-bs-toggle="modal" data-bs-target="#ReplyModal-{{ forloop.counter }}"><i class="bi bi-reply-fill"></i></button>
+
+          <div class="modal fade" id="ReplyModal-{{ forloop.counter }}" tabindex="-1" aria-labelledby="ReplyModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" style="color:black" id="ReplyModal">Send message to {{i.name}}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="{% url 'sendEmails_contact_admin' i.message_id %}" method="post">
+
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label" style="color:black">Recipient:</label>
+                      <input type="text" class="form-control" id="recipient_name"  name="recipient_name" value="{{i.email}}" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label" style="color:black">Subject:</label>
+                      <input type="text" class="form-control" id="email_subject" name="email_subject" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label" style="color:black">Message:</label>
+                      <textarea class="form-control" id="message_text" name="message_text" required></textarea>
+                    </div>
+                    <div class="modal-footer"></div>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-success">Send</button>
+                    </div>
+                  </form>
+                </div>
+                
+
+                
+
+              </div>
+            </div>
+          </div>
+        </td>
+
+
+
+      </tr>
+
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+</div>
+
+
+{% endblock body %}
